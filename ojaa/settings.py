@@ -41,20 +41,25 @@ INSTALLED_APPS = [
     # project apps
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
+    'cart.apps.CartConfig',
     'products.apps.ProductsConfig',
+    'order.apps.OrderConfig',
     
     # third party apps
     'rest_framework',
+    # 'rest_framework_simplejwt', 
     'rest_framework.authtoken',
-    'debug_toolbar',
+    
+    # 'debug_toolbar',
     'djoser', 
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # debug toolbar
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware', # debug toolbar
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -142,6 +147,17 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', 
+        
     ),
 } 
+
+DJOSER = {
+    "USER_ID_FIELDS": "username"
+}
+
+SIMPLE_JWT = {
+    
+}
